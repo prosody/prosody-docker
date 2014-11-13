@@ -16,7 +16,7 @@ RUN apt-get install -y openssl lua5.1 lua-expat lua-socket lua-filesystem \
   libidn11 lua-event lua-zlib lua-dbi-mysql lua-dbi-postgresql \
   libssl0.9.8 lua-dbi-sqlite3 lua-sec lua-zlib liblua5.1-expat0
 
-COPY ./build-file.deb /data/prosody.deb
+COPY ./prosody.deb /data/prosody.deb
 
 RUN dpkg -i /data/prosody.deb
 
