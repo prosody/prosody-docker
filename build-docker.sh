@@ -10,7 +10,11 @@ if [[ -z "$2" ]]; then
     exit 1
 fi
 
+echo "Starting build..."
 cp $1 ./prosody.deb
 docker build -t prosody/prosody:$2 .
 docker push prosody/prosody
+
+echo "Cleaning up..."
 docker rmi prosody/prosody:$2
+rm ./prosody.deb
