@@ -22,4 +22,4 @@ RUN dpkg -i /data/prosody.deb
 
 EXPOSE 443 80 5222 5269 5347 5280 
 
-CMD prosodyctl start
+ENTRYPOINT prosodyctl start
