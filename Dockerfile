@@ -20,6 +20,9 @@ COPY ./prosody.deb /data/prosody.deb
 
 RUN dpkg -i /data/prosody.deb
 
+# If using default configuration keep a process alive
+RUN echo 'daemonize = false;' | cat - /etc/prosody/prosody.cfg.lua > temp && mv temp /etc/prosody/prosody.cfg.lua
+
 EXPOSE 443 80 5222 5269 5347 5280 
 
 ENTRYPOINT prosodyctl start
