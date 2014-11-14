@@ -4,13 +4,15 @@ This is the Prosody Docker image building repository. Its only really designed t
 
 It works by coping in a recently built `deb` file and running the install on the system.
 
+## Running 
+
 Docker images are built off an __Ubuntu 14.04 LTS__ base.
 
 ```bash
 docker run -d prosody/prosody --name prosody -p 5222:5222
 ```
 
-## Ports
+### Ports
 
 The image exposes the following ports to the docker host:
 
@@ -22,7 +24,7 @@ The image exposes the following ports to the docker host:
 
 Note: These default ports can be changed in your configuration file. Therefore if you change these ports will not be exposed.
 
-## Volumes
+### Volumes
 
 Volumes can be mounted at the following locations for adding in files:
 
@@ -36,7 +38,7 @@ Volumes can be mounted at the following locations for adding in files:
   * Location for including additional modules
   * Note: This needs to be included in your config file, see http://prosody.im/doc/installing_modules#paths
 
-## Example
+### Example
 
 ```
 docker run -d prosody/prosody:0.9 \
@@ -47,3 +49,13 @@ docker run -d prosody/prosody:0.9 \
    -v /var/log/prosody /logs/prosody \
    -v /usr/lib/prosody-modules /data/prosody/modules
 ```
+
+## Building
+
+Use the `build-docker.sh` script as follows:
+
+```bash
+./build-docker.sh /path/to/built-image.deb version_tag
+```
+
+Where argument 1 is a pointer to the build `deb` file that you'd like to make an image from and 'version_tag' is the tag you'd like to push to the Docker registry with. After running the script will clean up any images generated (but not the base images - for efficiency purposes).
