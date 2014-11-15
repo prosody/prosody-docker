@@ -55,7 +55,11 @@ docker run -d prosody/prosody:0.9 \
 Use the `build-docker.sh` script as follows:
 
 ```bash
-./build-docker.sh /path/to/built-image.deb version_tag
+./build-docker.sh /path/to/built-image.deb version_tag [, ...version_tag2, ...]
 ```
 
-Where argument 1 is a pointer to the build `deb` file that you'd like to make an image from and 'version_tag' is the tag you'd like to push to the Docker registry with. After running the script will clean up any images generated (but not the base images - for efficiency purposes).
+Where argument 1 is a pointer to the build `deb` file that you'd like to make an image from and 'version_tag' is the tag you'd like to push to the Docker registry with. 
+
+You can specify multiple tags by adding additional tag names to the end of the command. This is useful where a for example release 0.10.4 is made which also consitutes 'latest', '0.10-nightly', '0.10.4', '0.10' images.
+
+After running the script will clean up any images generated (but not the base images - for efficiency purposes).
