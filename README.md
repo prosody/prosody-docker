@@ -1,6 +1,8 @@
 # Prosody Docker
 
-This is the Prosody Docker image building repository. Its only really designed to be used on the Prosody build server for pushing to the [Docker registry](https://registry.hub.docker.com/repos/prosody/).
+This is the Prosody Docker image building repository. Its only really designed to be used on the Prosody build server for pushing to the [Docker registry](https://registry.hub.docker.com).
+
+For images please see here: [Prosody on Docker](https://registry.hub.docker.com/u/prosody/prosody/).
 
 It works by coping in a recently built `deb` file and running the install on the system.
 
