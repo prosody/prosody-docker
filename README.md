@@ -23,6 +23,7 @@ The image exposes the following ports to the docker host:
 * __5269__: s2s port
 * __5347__: XMPP component port
 * __5280__: BOSH / websocket port
+* __5281__: Secure BOSH / websocket port
 
 Note: These default ports can be changed in your configuration file. Therefore if you change these ports will not be exposed.
 
