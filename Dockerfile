@@ -17,7 +17,9 @@ RUN apt-get install -y openssl lua5.1 lua-expat lua-socket lua-filesystem \
   lua-dbi-sqlite3 libssl1.0.0 lua-sec lua-zlib liblua5.1-expat0
 
 COPY ./prosody.deb /data/prosody.deb
+COPY ./start.sh /data/start.sh
 
+RUN chmod 700 /data/start.sh
 RUN dpkg -i /data/prosody.deb
 
 # If using default configuration keep a process alive
@@ -25,4 +27,4 @@ RUN echo 'daemonize = false;' | cat - /etc/prosody/prosody.cfg.lua > temp && mv 
 
 EXPOSE 443 80 5222 5269 5347 5280 5281 
 
-ENTRYPOINT prosodyctl start
+ENTRYPOINT /data/start.sh
