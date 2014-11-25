@@ -6,6 +6,6 @@ if [ ! "${LOCAL}" ] || [ ! "${PASSWORD}" ] || [ ! "${DOMAIN}" ] ; then
     DOMAIN="localhost"
 fi
 
-prosodyctl register $LOCAL $DOMAIN $PASSWORD
+prosodyctl register $LOCAL $DOMAIN $PASSWORD || true
 
 prosodyctl start
