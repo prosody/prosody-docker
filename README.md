@@ -14,6 +14,12 @@ Docker images are built off an __Ubuntu 14.04 LTS__ base.
 docker run -d prosody/prosody --name prosody -p 5222:5222
 ```
 
+On startup the image will create a default user of `admin@localhost` with password `password`. This can be changed by using environment variables `LOCAL`, `DOMAIN`, and `PASSWORD`. This performs the following action on startup:
+
+  prosodyctl register *local* *domain* *password*
+  
+Any error from this script is ignored. Prosody will not check the user exists before running the command (i.e. existing users will be overwritten). It is expected that [mod_admin_adhoc](http://prosody.im/doc/modules/mod_admin_adhoc) will then be in place for managing users (and the server).
+
 ### Ports
 
 The image exposes the following ports to the docker host:
@@ -48,6 +54,9 @@ docker run -d prosody/prosody:0.9 \
    -p 5222:5222 \
    -p 5269:5269 \
    -p localhost:5347:5347 \
+   -e LOCAL=romeo \
+   -e DOMAIN=shakespeare.lit \
+   -e PASSWORD=juliet4ever \
    -v /etc/prosody /data/prosody/configuration \
    -v /var/log/prosody /logs/prosody \
    -v /usr/lib/prosody-modules /data/prosody/modules
