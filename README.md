@@ -11,7 +11,7 @@ It works by coping in a recently built `deb` file and running the install on the
 Docker images are built off an __Ubuntu 14.04 LTS__ base.
 
 ```bash
-docker run -d prosody/prosody --name prosody -p 5222:5222
+docker run -d --name prosody -p 5222:5222 prosody/prosody
 ```
 
 On startup the image will create a default user of `admin@localhost` with password `password`. This can be changed by using environment variables `LOCAL`, `DOMAIN`, and `PASSWORD`. This performs the following action on startup:
