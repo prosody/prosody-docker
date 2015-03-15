@@ -50,16 +50,17 @@ Volumes can be mounted at the following locations for adding in files:
 ### Example
 
 ```
-docker run -d prosody/prosody:0.9 \
+docker run -d \
    -p 5222:5222 \
    -p 5269:5269 \
    -p localhost:5347:5347 \
    -e LOCAL=romeo \
    -e DOMAIN=shakespeare.lit \
    -e PASSWORD=juliet4ever \
-   -v /etc/prosody /data/prosody/configuration \
-   -v /var/log/prosody /logs/prosody \
-   -v /usr/lib/prosody-modules /data/prosody/modules
+   -v /etc/prosody:/data/prosody/configuration \
+   -v /var/log/prosody:/logs/prosody \
+   -v /usr/lib/prosody-modules:/data/prosody/modules
+   prosody/prosody:0.9
 ```
 
 ## Building
