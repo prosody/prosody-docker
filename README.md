@@ -57,9 +57,9 @@ docker run -d \
    -e LOCAL=romeo \
    -e DOMAIN=shakespeare.lit \
    -e PASSWORD=juliet4ever \
-   -v /etc/prosody:/data/prosody/configuration \
-   -v /var/log/prosody:/logs/prosody \
-   -v /usr/lib/prosody-modules:/data/prosody/modules
+   -v /data/prosody/configuration:/etc/prosody \
+   -v /logs/prosody:/var/log/prosody \
+   -v /data/prosody/modules:/usr/lib/prosody-modules
    prosody/prosody:0.9
 ```
 
