@@ -43,6 +43,7 @@ Volumes can be mounted at the following locations for adding in files:
 * __/var/log/prosody__:
   * Log files for prosody - if not mounted these will be stored on the system
   * Note: This location can be changed in the configuration, update to match
+  * Also note: The log directory on the host (/logs/prosody in the example below) must be writeable by the prosody user
 * __/usr/lib/prosody-modules__ (suggested):
   * Location for including additional modules
   * Note: This needs to be included in your config file, see http://prosody.im/doc/installing_modules#paths
