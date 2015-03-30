@@ -60,7 +60,7 @@ docker run -d \
    -e PASSWORD=juliet4ever \
    -v /data/prosody/configuration:/etc/prosody \
    -v /logs/prosody:/var/log/prosody \
-   -v /data/prosody/modules:/usr/lib/prosody-modules
+   -v /data/prosody/modules:/usr/lib/prosody-modules \
    prosody/prosody:0.9
 ```
 
