@@ -22,7 +22,6 @@ RUN apt-get update \
         lua-sec \
         lua-socket \
         lua-zlib \
-        lua-zlib \
         lua5.1 \
         openssl \
     && rm -rf /var/lib/apt/lists/*
