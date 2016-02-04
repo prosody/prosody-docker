@@ -13,6 +13,7 @@ RUN apt-get update \
         libidn11 \
         liblua5.1-expat0 \
         libssl1.0.0 \
+        lua-bitop \
         lua-dbi-mysql \
         lua-dbi-postgresql \
         lua-dbi-sqlite3 \
