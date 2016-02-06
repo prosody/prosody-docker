@@ -1,13 +1,13 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 
-if [[ "$1" != "prosody" ]]; then
-    exec prosodyctl $*
+if [ "x$1" != "x/usr/bin/prosody" ]; then
+    exec /usr/bin/prosodyctl $*
     exit 0;
 fi
 
 if [ "$LOCAL" -a  "$PASSWORD" -a "$DOMAIN" ] ; then
-    prosodyctl register $LOCAL $DOMAIN $PASSWORD
+    /usr/bin/prosodyctl register $LOCAL $DOMAIN $PASSWORD
 fi
 
 exec "$@"
