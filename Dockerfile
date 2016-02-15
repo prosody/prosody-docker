@@ -3,16 +3,15 @@
 # Based on ubuntu
 ################################################################################
 
-FROM alpine:3.3
+FROM fedora:latest
 
 MAINTAINER Prosody Developers <docker@prosody.im>
 
 # Install dependencies
-RUN apk add --update --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ prosody && rm -rf /var/cache/apk/*
+RUN dnf -y update && dnf -y clean all
+RUN dnf -y install prosody && dnf -y clean all
 
-# Install and configure prosody
-COPY ./prosody.deb /tmp/prosody.deb
-RUN sed -i 's/daemonize = true/daemonize = false/;s/\*syslog/*console/' /etc/prosody/prosody.cfg.lua
+RUN sed -i -e 's/--daemonize = .*$/daemonize = false/;/^log = {/,/^}/ { /^  /d; /^}/i\' -e '  debug = "*console"' -e '; p ;d };' /etc/prosody/prosody.cfg.lua
 
 COPY ./entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
