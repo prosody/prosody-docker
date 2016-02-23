@@ -69,7 +69,7 @@ docker run -d \
 Use the `build-docker.sh` script as follows:
 
 ```bash
-./build-docker.sh /path/to/built-image.deb version_tag [, ...version_tag2, ...]
+./build-docker.sh /path/to/prosody-tarball.tar.gz version_tag [, ...version_tag2, ...]
 ```
 
 Where argument 1 is a pointer to the build `deb` file that you'd like to make an image from and 'version_tag' is the tag you'd like to push to the Docker registry with.

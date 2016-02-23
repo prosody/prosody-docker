@@ -11,7 +11,7 @@ if [[ -z "$2" ]]; then
 fi
 
 echo "Starting build..."
-cp $1 ./prosody.deb
+#cp $1 ./prosody.deb
 docker build -t prosody/prosody:$2 .
 for i in "${@:3}"; do
   echo "Also building tag $i"
@@ -25,4 +25,4 @@ for i in "${@:3}"; do
   echo "Also cleaning tag $i"  
   docker rmi prosody/prosody:$i
 done
-rm ./prosody.deb
+#rm ./prosody.deb
