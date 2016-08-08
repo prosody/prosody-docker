@@ -25,6 +25,7 @@ RUN apt-get update \
         lua-zlib \
         lua5.1 \
         openssl \
+        ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 # Install and configure prosody
