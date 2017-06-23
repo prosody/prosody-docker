@@ -1,6 +1,6 @@
 ################################################################################
 # Build a dockerfile for Prosody XMPP server
-# Based on ubuntu
+# Based on Debian Stretch
 ################################################################################
 
 FROM debian:stretch
