@@ -3,7 +3,7 @@
 # Based on ubuntu
 ################################################################################
 
-FROM ubuntu:14.04
+FROM debian:stretch
 
 MAINTAINER Lloyd Watkin <lloyd@evilprofessor.co.uk>
 
@@ -11,8 +11,7 @@ MAINTAINER Lloyd Watkin <lloyd@evilprofessor.co.uk>
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         libidn11 \
-        liblua5.1-expat0 \
-        libssl1.0.0 \
+        libssl1.0.2 \
         lua-bitop \
         lua-dbi-mysql \
         lua-dbi-postgresql \
@@ -25,6 +24,7 @@ RUN apt-get update \
         lua-zlib \
         lua5.1 \
         openssl \
+	ssl-cert \
         ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
