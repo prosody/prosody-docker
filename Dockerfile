@@ -7,9 +7,11 @@ FROM debian:stretch
 
 LABEL maintainer="m@maltris.org"
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 # Install dependencies
 RUN apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    && apt-get install -y --no-install-recommends \
         libidn11 \
         libssl1.0.2 \
         lua-bitop \
@@ -26,12 +28,27 @@ RUN apt-get update \
         openssl \
 	ssl-cert \
         ca-certificates \
-    && rm -rf /var/lib/apt/lists/*
+    && apt-get autoremove -y --purge && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install and configure prosody
-COPY ./prosody.deb /tmp/prosody.deb
-RUN dpkg -i /tmp/prosody.deb \
-    && sed -i '1s/^/daemonize = false;\n/' /etc/prosody/prosody.cfg.lua \
+# Install prosody
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends \
+        	curl \
+        	software-properties-common \
+		gnupg2 \
+	&& echo "deb http://packages.prosody.im/debian stretch main" > /etc/apt/sources.list.d/prosody.list \
+        && curl https://prosody.im/files/prosody-debian-packages.key | apt-key add - && apt-get update \
+	&& apt-get install -y --no-install-recommends \
+		prosody \
+        && apt-get purge -y \
+		curl \
+		software-properties-common \
+		gnupg2 \
+	&& apt-get autoremove -y --purge && apt-get clean \
+	&& rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/prosody.list
+
+# Configure prosody
+RUN sed -i '1s/^/daemonize = false;\n/' /etc/prosody/prosody.cfg.lua \
     && perl -i -pe 'BEGIN{undef $/;} s/^log = {.*?^}$/log = {\n    {levels = {min = "info"}, to = "console"};\n}/smg' /etc/prosody/prosody.cfg.lua
 
 COPY ./entrypoint.sh /entrypoint.sh
