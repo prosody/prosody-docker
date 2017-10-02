@@ -5,7 +5,7 @@
 
 FROM debian:stretch
 
-MAINTAINER Lloyd Watkin <lloyd@evilprofessor.co.uk>
+LABEL maintainer="m@maltris.org"
 
 # Install dependencies
 RUN apt-get update \
