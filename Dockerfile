@@ -38,6 +38,9 @@ COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
+HEALTHCHECK --interval=5s --timeout=2s --retries=5 \
+	CMD bash -c "</dev/tcp/localhost/5222 && </dev/tcp/localhost/5269"
+
 EXPOSE 80 443 5222 5269 5347 5280 5281
 USER prosody
 ENV __FLUSH_LOG yes
