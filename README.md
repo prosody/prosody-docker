@@ -1,17 +1,19 @@
 # Prosody Docker
 
-This is the Prosody Docker image building repository. Its only really designed to be used on the Prosody build server for pushing to the [Docker registry](https://registry.hub.docker.com).
+This is a Prosody Docker image.
 
-For images please see here: [Prosody on Docker](https://registry.hub.docker.com/u/prosody/prosody/).
+## Building
 
-It works by coping in a recently built `deb` file and running the install on the system.
+```bash
+docker build -t prosody-stretch:0.10 .
+```
 
 ## Running
 
-Docker images are built off an __Ubuntu 14.04 LTS__ base.
+Docker images are built off an __Debian Stretch__ base.
 
 ```bash
-docker run -d --name prosody -p 5222:5222 prosody/prosody
+docker run -d --name prosody -p 5222:5222 prosody-stretch:0.10
 ```
 
 A user can be created by using environment variables `LOCAL`, `DOMAIN`, and `PASSWORD`. This performs the following action on startup:
@@ -25,6 +27,7 @@ Any error from this script is ignored. Prosody will not check the user exists be
 The image exposes the following ports to the docker host:
 
 * __80__: HTTP port
+* __443__: HTTPS port
 * __5222__: c2s port
 * __5269__: s2s port
 * __5347__: XMPP component port
@@ -61,19 +64,5 @@ docker run -d \
    -v /data/prosody/configuration:/etc/prosody \
    -v /logs/prosody:/var/log/prosody \
    -v /data/prosody/modules:/usr/lib/prosody-modules \
-   prosody/prosody:0.9
+   prosody/prosody:0.10
 ```
-
-## Building
-
-Use the `build-docker.sh` script as follows:
-
-```bash
-./build-docker.sh /path/to/built-image.deb version_tag [, ...version_tag2, ...]
-```
-
-Where argument 1 is a pointer to the build `deb` file that you'd like to make an image from and 'version_tag' is the tag you'd like to push to the Docker registry with.
-
-You can specify multiple tags by adding additional tag names to the end of the command. This is useful where a for example release 0.10.4 is made which also consitutes 'latest', '0.10-nightly', '0.10.4', '0.10' images.
-
-After running the script will clean up any images generated (but not the base images - for efficiency purposes).
