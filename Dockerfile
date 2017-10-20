@@ -13,7 +13,6 @@ RUN apt-get update \
         lsb-base \
         adduser \
         libidn11 \
-        liblua5.1-expat0 \
         libssl1.0.0 \
         lua-bitop \
         lua-dbi-mysql \
