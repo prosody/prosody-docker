@@ -10,6 +10,8 @@ MAINTAINER Lloyd Watkin <lloyd@evilprofessor.co.uk>
 # Install dependencies
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        lsb-base \
+        adduser \
         libidn11 \
         liblua5.1-expat0 \
         libssl1.0.0 \
@@ -26,6 +28,7 @@ RUN apt-get update \
         lua5.1 \
         openssl \
         ca-certificates \
+        ssl-cert \
     && rm -rf /var/lib/apt/lists/*
 
 # Install and configure prosody
