@@ -3,7 +3,7 @@
 # Based on ubuntu
 ################################################################################
 
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 
 MAINTAINER Lloyd Watkin <lloyd@evilprofessor.co.uk>
 
@@ -37,7 +37,7 @@ RUN dpkg -i /tmp/prosody.deb \
     && perl -i -pe 'BEGIN{undef $/;} s/^log = {.*?^}$/log = {\n    {levels = {min = "info"}, to = "console"};\n}/smg' /etc/prosody/prosody.cfg.lua
 
 COPY ./entrypoint.sh /entrypoint.sh
-RUN chmod 755 /entrypoint.sh
+RUN chmod 755 /entrypoint.sh && mkdir -p /var/run/prosody && chown prosody:prosody /var/run/prosody
 ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 80 443 5222 5269 5347 5280 5281
