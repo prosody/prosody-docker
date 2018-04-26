@@ -1,12 +1,20 @@
-# Prosody Docker
+# Docker build scripts for Prosody build server
 
-This is the Prosody Docker image building repository. Its only really designed to be used on the Prosody build server for pushing to the [Docker registry](https://registry.hub.docker.com).
+This is the Prosody Docker image building repository. It is used by our build server to build and publish Docker images for stable releases and nightly builds.
 
-For images please see here: [Prosody on Docker](https://registry.hub.docker.com/u/prosody/prosody/).
+**Note:** Using this Dockerfile outside of our build server is not a supported use-case. There are many
+alternative Dockerfiles for Prosody available which can be used for this:
 
-It works by coping in a recently built `deb` file and running the install on the system.
+  - [OpusVL/prosody-docker](https://github.com/OpusVL/prosody-docker/)
+  - [unclev/prosody-docker-extended](https://github.com/unclev/prosody-docker-extended)
+
+## Published images
+
+For images please see here: [Prosody on Docker](https://hub.docker.com/r/prosody/prosody/).
 
 ## Running
+
+It works by copying in a recently built `deb` file and running the install on the system.
 
 Docker images are built off an __Ubuntu 14.04 LTS__ base.
 
