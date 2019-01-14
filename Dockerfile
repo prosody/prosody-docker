@@ -3,9 +3,13 @@
 # Based on ubuntu
 ################################################################################
 
-FROM ubuntu:14.04
+FROM debian:9
 
-MAINTAINER Lloyd Watkin <lloyd@evilprofessor.co.uk>
+MAINTAINER Prosody Developers <developers@prosody.im>
+
+# Some dependencies in stretch are not suitable for Prosody 0.11.x, so add our repo
+RUN echo "deb http://packages.prosody.im/debian stretch main" > /etc/apt/sources.list.d/prosody.list
+ADD prosody_packages.gpg /etc/apt/trusted.gpg.d/prosody.gpg
 
 # Install dependencies
 RUN apt-get update \
@@ -13,7 +17,7 @@ RUN apt-get update \
         lsb-base \
         adduser \
         libidn11 \
-        libssl1.0.0 \
+        libssl1.1 \
         lua-bitop \
         lua-dbi-mysql \
         lua-dbi-postgresql \
