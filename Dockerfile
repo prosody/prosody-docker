@@ -10,6 +10,7 @@ MAINTAINER Prosody Developers <developers@prosody.im>
 # Some dependencies in stretch are not suitable for Prosody 0.11.x, so add our repo
 RUN echo "deb http://packages.prosody.im/debian stretch main" > /etc/apt/sources.list.d/prosody.list
 ADD prosody_packages.gpg /etc/apt/trusted.gpg.d/prosody.gpg
+RUN chmod a+r /etc/apt/trusted.gpg.d/prosody.gpg
 
 # Install dependencies
 RUN apt-get update \
