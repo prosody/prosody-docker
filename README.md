@@ -16,7 +16,7 @@ For images please see here: [Prosody on Docker](https://hub.docker.com/r/prosody
 
 It works by copying in a recently built `deb` file and running the install on the system.
 
-Docker images are built off an __Ubuntu 14.04 LTS__ base.
+Docker images are built off an __Debian 9 (stretch)__ base.
 
 ```bash
 docker run -d --name prosody -p 5222:5222 prosody/prosody
