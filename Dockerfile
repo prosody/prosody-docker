@@ -29,6 +29,7 @@ RUN apt-get update \
         lua-socket \
         lua-zlib \
         lua5.1 \
+        lua5.2 \
         openssl \
         ca-certificates \
         ssl-cert \
