@@ -2,12 +2,12 @@
 set -e
 
 if [[ "$1" != "prosody" ]]; then
-    exec prosodyctl $*
+    exec prosodyctl "$@"
     exit 0;
 fi
 
 if [ "$LOCAL" -a  "$PASSWORD" -a "$DOMAIN" ] ; then
-    prosodyctl register $LOCAL $DOMAIN $PASSWORD
+    prosodyctl register "$LOCAL" "$DOMAIN" "$PASSWORD"
 fi
 
 exec "$@"
