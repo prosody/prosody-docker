@@ -3,7 +3,7 @@
 # Based on ubuntu
 ################################################################################
 
-FROM debian:9
+FROM debian:10
 
 MAINTAINER Prosody Developers <developers@prosody.im>
 
