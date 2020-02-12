@@ -16,6 +16,7 @@ RUN chmod a+r /etc/apt/trusted.gpg.d/prosody.gpg
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         lsb-base \
+        procps \
         adduser \
         libidn11 \
         libicu63 \
