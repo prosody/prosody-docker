@@ -3,9 +3,11 @@
 # Based on ubuntu
 ################################################################################
 
-FROM debian:10
+FROM debian:stable-slim
 
-MAINTAINER Prosody Developers <developers@prosody.im>
+LABEL maintainer="Prosody Developers <developers@prosody.im>"
+
+RUN groupadd -g 1000 -r prosody && useradd -m -g prosody -u 1000 -r -s /bin/bash prosody
 
 # Install dependencies
 RUN apt-get update \
