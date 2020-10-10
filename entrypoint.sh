@@ -12,4 +12,4 @@ if [ "$LOCAL" -a  "$PASSWORD" -a "$DOMAIN" ] ; then
     prosodyctl register "$LOCAL" "$DOMAIN" "$PASSWORD"
 fi
 
-runuser -u prosody -- "$@"
+exec runuser -u prosody -- "$@"
