@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 set -e
 
 data_dir_owner="$(stat -c %u "/var/lib/prosody/")"
@@ -14,7 +14,7 @@ if [[ "$1" != "prosody" ]]; then
     exit 0;
 fi
 
-if [ "$LOCAL" -a  "$PASSWORD" -a "$DOMAIN" ] ; then
+if [[ "$LOCAL" && "$PASSWORD" && "$DOMAIN" ]]; then
     prosodyctl register "$LOCAL" "$DOMAIN" "$PASSWORD"
 fi
 
