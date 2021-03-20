@@ -10,7 +10,7 @@ if [[ "$(stat -c %u /var/run/prosody/)" != "$data_dir_owner" ]]; then
 fi
 
 if [[ "$1" != "prosody" ]]; then
-    exec prosodyctl "$@"
+    exec tini -- prosodyctl "$@"
     exit 0;
 fi
 
@@ -18,4 +18,4 @@ if [[ "$LOCAL" && "$PASSWORD" && "$DOMAIN" ]]; then
     prosodyctl register "$LOCAL" "$DOMAIN" "$PASSWORD"
 fi
 
-exec runuser -u prosody -- "$@"
+exec tini -- runuser -u prosody -- "$@"

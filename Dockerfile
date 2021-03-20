@@ -31,6 +31,7 @@ RUN apt-get update \
         openssl \
         ca-certificates \
         ssl-cert \
+        tini \
     && rm -rf /var/lib/apt/lists/*
 
 # Install and configure prosody
