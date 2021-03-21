@@ -18,4 +18,4 @@ if [[ "$LOCAL" && "$PASSWORD" && "$DOMAIN" ]]; then
     prosodyctl register "$LOCAL" "$DOMAIN" "$PASSWORD"
 fi
 
-exec runuser -u prosody -- "$@"
+exec setpriv --reuid=prosody --regid=prosody --init-groups "$@"
