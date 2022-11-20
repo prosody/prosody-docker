@@ -2,7 +2,7 @@
 # Build a dockerfile for Prosody XMPP server
 ################################################################################
 
-FROM debian:11
+FROM debian:11-slim
 
 MAINTAINER Prosody Developers <developers@prosody.im>
 
