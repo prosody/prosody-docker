@@ -2,7 +2,7 @@
 # Build a dockerfile for Prosody XMPP server
 ################################################################################
 
-FROM debian:10
+FROM debian:11
 
 MAINTAINER Prosody Developers <developers@prosody.im>
 
@@ -13,7 +13,7 @@ RUN apt-get update \
         procps \
         adduser \
         libidn11 \
-        libicu63 \
+        libicu67 \
         libssl1.1 \
         lua-bitop \
         lua-dbi-mysql \
@@ -24,6 +24,7 @@ RUN apt-get update \
         lua-filesystem \
         lua-sec \
         lua-socket \
+        lua-unbound \
         lua-zlib \
         lua5.1 \
         lua5.2 \
