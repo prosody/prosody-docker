@@ -16,6 +16,7 @@ RUN apt-get update \
         ${LUA_PACKAGE} \
         lua-unbound \
         lua-sec \
+        lua-readline \
         lua-dbi-sqlite3 \
         lua-dbi-postgresql \
         lua-dbi-mysql \
