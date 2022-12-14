@@ -98,7 +98,7 @@ local default_modules = {
 		--"welcome"; -- Welcome users who register accounts
 }
 
-for _, module_name in ipairs(_split(ENV_ENABLE_MODULES) or {}) do
+for _, module_name in ipairs(_split(ENV_PROSODY_ENABLE_MODULES) or {}) do
 	default_modules[#default_modules+1] = module_name;
 end
 
@@ -117,7 +117,7 @@ end
 modules_enabled = default_modules
 
 local env_disabled_modules = {};
-for _, module_name in ipairs(_split(ENV_DISABLE_MODULES) or {}) do
+for _, module_name in ipairs(_split(ENV_PROSODY_DISABLE_MODULES) or {}) do
 	env_disabled_modules[#env_disabled_modules+1] = module_name;
 end
 
@@ -128,7 +128,7 @@ modules_disabled = env_disabled_modules
 -- Require valid certificates for server-to-server connections?
 -- If false, other methods such as dialback (DNS) may be used instead.
 
-s2s_secure_auth = ENV_S2S_SECURE_AUTH ~= "0"
+s2s_secure_auth = ENV_PROSODY_S2S_SECURE_AUTH ~= "0"
 
 -- Some servers have invalid or self-signed certificates. You can list
 -- remote domains here that will not be required to authenticate using
@@ -149,10 +149,10 @@ s2s_secure_auth = ENV_S2S_SECURE_AUTH ~= "0"
 
 limits = {
 	c2s = {
-		rate = ENV_C2S_RATE_LIMIT or "10kb/s";
+		rate = ENV_PROSODY_C2S_RATE_LIMIT or "10kb/s";
 	};
 	s2sin = {
-		rate = ENV_S2S_RATE_LIMIT or "30kb/s";
+		rate = ENV_PROSODY_S2S_RATE_LIMIT or "30kb/s";
 	};
 }
 
