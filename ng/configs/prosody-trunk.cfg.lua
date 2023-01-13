@@ -142,6 +142,10 @@ s2s_secure_auth = ENV_PROSODY_S2S_SECURE_AUTH ~= "0"
 
 --s2s_secure_domains = { "jabber.org" }
 
+unbound = {
+	trustfile = "/usr/share/dns/root.ds";
+}
+use_dane = true
 
 -- Rate limits
 -- Enable rate limits for incoming client and server connections. These help

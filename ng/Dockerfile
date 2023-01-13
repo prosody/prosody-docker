@@ -20,6 +20,7 @@ RUN apt-get update \
         lua-dbi-sqlite3 \
         lua-dbi-postgresql \
         lua-dbi-mysql \
+        dns-root-data \
         luarocks \
     && update-alternatives --set lua-interpreter /usr/bin/${LUA_PACKAGE} \
     && rm -rf /var/lib/apt/lists/*
