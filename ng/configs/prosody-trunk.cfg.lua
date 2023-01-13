@@ -174,7 +174,7 @@ authentication = "internal_hashed"
 -- through modules. An "sql" backend is included by default, but requires
 -- additional dependencies. See https://prosody.im/doc/storage for more info.
 
-storage = ENV_PROSODY_SQL_DRIVER and "sql" or ENV_PROSODY_STORAGE or "internal"
+storage = ENV_PROSODY_STORAGE and require"util.json".decode(ENV_PROSODY_STORAGE) or ENV_PROSODY_STORAGE
 
 -- For the "sql" backend, you can uncomment *one* of the below to configure:
 
