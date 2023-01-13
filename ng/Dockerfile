@@ -21,6 +21,7 @@ RUN apt-get update \
         lua-dbi-postgresql \
         lua-dbi-mysql \
         luarocks \
+    && update-alternatives --set lua-interpreter /usr/bin/${LUA_PACKAGE} \
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /etc/prosody/conf.d /var/run/prosody \
