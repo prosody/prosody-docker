@@ -227,6 +227,7 @@ log = {
 
 -- For more info see https://prosody.im/doc/statistics
 statistics = ENV_PROSODY_STATISTICS
+statistics_interval = tonumber(ENV_PROSODY_STATISTICS_INTERVAL) or ENV_PROSODY_STATISTICS_INTERVAL
 
 
 -- Certificates
