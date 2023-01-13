@@ -221,7 +221,7 @@ archive_expires_after = (ENV_PROSODY_ARCHIVE_EXPIRY_DAYS or ENV_PROSODY_RETENTIO
 -- Logging configuration
 -- For advanced logging see https://prosody.im/doc/logging
 log = {
-	[ENV_PROSODY_LOGLEVEL or "info"] = "*stdout";
+	[ENV_PROSODY_LOGLEVEL or "info"] = "*console";
 }
 
 
