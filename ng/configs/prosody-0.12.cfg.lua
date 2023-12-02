@@ -16,7 +16,7 @@ local function _split(s, sep)
 	if not s then return nil; end
 	sep = sep or ",";
 	local parts = {};
-	for part in s:gmatch("[^"..sep.."]*") do
+	for part in s:gmatch("[^"..sep.."]+") do
 		parts[#parts+1] = part;
 	end
 	return parts;
