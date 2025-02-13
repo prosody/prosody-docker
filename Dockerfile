@@ -1,48 +1,38 @@
-################################################################################
-# Build a dockerfile for Prosody XMPP server
-################################################################################
-
-FROM debian:10
+FROM debian:bookworm-slim
 
 MAINTAINER Prosody Developers <developers@prosody.im>
+
+ARG PROSODY_PACKAGE=prosody-0.12
+ARG LUA_PACKAGE=lua5.3
 
 # Install dependencies
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-        lsb-base \
-        procps \
-        adduser \
-        libidn11 \
-        libicu63 \
-        libssl1.1 \
-        lua-bitop \
-        lua-dbi-mysql \
-        lua-dbi-postgresql \
-        lua-dbi-sqlite3 \
-        lua-event \
-        lua-expat \
-        lua-filesystem \
+        extrepo tini \
+    && extrepo enable prosody \
+    && apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        ${PROSODY_PACKAGE} \
+        ${LUA_PACKAGE} \
+        lua-unbound \
         lua-sec \
-        lua-socket \
-        lua-zlib \
-        lua5.1 \
-        lua5.2 \
-        openssl \
-        ca-certificates \
-        ssl-cert \
+        lua-readline \
+        lua-dbi-sqlite3 \
+        lua-dbi-postgresql \
+        lua-dbi-mysql \
+        luarocks \
+        lib${LUA_PACKAGE}-dev \
+    && update-alternatives --set lua-interpreter /usr/bin/${LUA_PACKAGE} \
     && rm -rf /var/lib/apt/lists/*
 
-# Install and configure prosody
-COPY ./prosody.deb /tmp/prosody.deb
-RUN dpkg -i /tmp/prosody.deb \
-    && sed -i '1s/^/daemonize = false;\n/' /etc/prosody/prosody.cfg.lua \
-    && perl -i -pe 'BEGIN{undef $/;} s/^log = {.*?^}$/log = {\n    {levels = {min = "info"}, to = "console"};\n}/smg' /etc/prosody/prosody.cfg.lua
-
-RUN mkdir -p /var/run/prosody && chown prosody:prosody /var/run/prosody
+RUN mkdir -p /etc/prosody/conf.d /var/run/prosody \
+ && chown prosody:prosody /etc/prosody/conf.d /var/run/prosody
 
 COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/usr/bin/tini", "--", "/entrypoint.sh"]
+
+COPY ./configs/${PROSODY_PACKAGE}.cfg.lua /etc/prosody/prosody.cfg.lua
 
 EXPOSE 80 443 5222 5269 5347 5280 5281
 ENV __FLUSH_LOG yes
