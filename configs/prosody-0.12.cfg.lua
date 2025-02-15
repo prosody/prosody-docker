@@ -277,7 +277,7 @@ for _, component_def in ipairs(_split(ENV_PROSODY_COMPONENTS) or {}) do
 			http_file_share_size_limit = (1024 * 1024 * tonumber(ENV_PROSODY_UPLOAD_LIMIT_MB)) + 16
 		end
 		if ENV_PROSODY_UPLOAD_STORAGE_GB then
-			http_file_share_global_quota = 1024 * 1024 * 1024 * tonumber(ENV_UPLOAD_STORAGE_GB)
+			http_file_share_global_quota = 1024 * 1024 * 1024 * tonumber(ENV_PROSODY_UPLOAD_STORAGE_GB)
 		end
 		http_paths = {
 			file_share = "/share";
