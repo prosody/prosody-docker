@@ -42,7 +42,7 @@ admins = _split(ENV_PROSODY_ADMINS)
 
 -- This is the list of modules Prosody will load on startup.
 -- Documentation for bundled modules can be found at: https://prosody.im/doc/modules
-local default_modules = {
+modules_enabled = {
 
 	-- Generally required
 		"disco"; -- Service discovery
@@ -113,8 +113,6 @@ end
 if ENV_PROSODY_RETENTION_DAYS or ENV_PROSODY_ARCHIVE_EXPIRY_DAYS then
 	modules_enabled:append{ "mam" }
 end
-
-modules_enabled = default_modules
 
 modules_disabled = _split(ENV_PROSODY_DISABLE_MODULES)
 
