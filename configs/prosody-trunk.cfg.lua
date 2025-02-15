@@ -98,12 +98,12 @@ local default_modules = {
 		--"welcome"; -- Welcome users who register accounts
 }
 
-for _, module_name in ipairs(_split(ENV_PROSODY_ENABLE_MODULES) or {}) do
-	default_modules[#default_modules+1] = module_name;
+if ENV_PROSODY_ENABLE_MODULES then
+	modules_enabled:append(_split(ENV_PROSODY_ENABLE_MODULES))
 end
 
 if ENV_PROSODY_TURN_SECRET then
-	default_modules[#default_modules+1] = "turn_external";
+	modules_enabled:append{ "turn_external" };
 	turn_external_secret = ENV_PROSODY_TURN_SECRET
 	turn_external_host = ENV_PROSODY_TURN_HOST
 	turn_external_port = ENV_PROSODY_TURN_PORT
@@ -111,17 +111,12 @@ if ENV_PROSODY_TURN_SECRET then
 end
 
 if ENV_PROSODY_RETENTION_DAYS or ENV_PROSODY_ARCHIVE_EXPIRY_DAYS then
-	default_modules[#default_modules+1] = "mam";
+	modules_enabled:append{ "mam" }
 end
 
 modules_enabled = default_modules
 
-local env_disabled_modules = {};
-for _, module_name in ipairs(_split(ENV_PROSODY_DISABLE_MODULES) or {}) do
-	env_disabled_modules[#env_disabled_modules+1] = module_name;
-end
-
-modules_disabled = env_disabled_modules
+modules_disabled = _split(ENV_PROSODY_DISABLE_MODULES)
 
 
 -- Server-to-server authentication
