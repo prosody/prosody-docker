@@ -3,7 +3,7 @@ FROM debian:bookworm-slim
 MAINTAINER Prosody Developers <developers@prosody.im>
 
 ARG PROSODY_PACKAGE=prosody-0.12
-ARG LUA_PACKAGE=lua5.3
+ARG LUA_PACKAGE=lua5.4
 
 # Install dependencies
 RUN apt-get update \
