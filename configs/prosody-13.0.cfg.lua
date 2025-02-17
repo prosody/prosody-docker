@@ -220,7 +220,7 @@ log = {
 
 -- For more info see https://prosody.im/doc/statistics
 statistics = ENV_PROSODY_STATISTICS
-statistics_interval = tonumber(ENV_PROSODY_STATISTICS_INTERVAL) or ENV_PROSODY_STATISTICS_INTERVAL
+statistics_interval = Lua.tonumber(ENV_PROSODY_STATISTICS_INTERVAL) or ENV_PROSODY_STATISTICS_INTERVAL
 
 
 -- Certificates
@@ -237,7 +237,7 @@ certificates = ENV_PROSODY_CERTIFICATES or "certs"
 -- You need to add a VirtualHost entry for each domain you wish Prosody to serve.
 -- Settings under each VirtualHost entry apply *only* to that host.
 
-local pp = require "util.pposix";
+local pp = Lua.require "prosody.util.pposix";
 local vhosts = _split(ENV_PROSODY_VIRTUAL_HOSTS) or {pp.uname().nodename};
 
 local network_hostname = ENV_PROSODY_NETWORK_HOSTNAME or #vhosts == 1 and vhosts[1];
@@ -249,7 +249,7 @@ if network_hostname then
 	end
 end
 
-for _, vhost in ipairs(vhosts) do
+for _, vhost in Lua.ipairs(vhosts) do
 	VirtualHost (vhost)
 end
 
@@ -258,7 +258,7 @@ end
 -- like multi-user conferences, and transports.
 -- For more information on components, see https://prosody.im/doc/components
 
-for _, component_def in ipairs(_split(ENV_PROSODY_COMPONENTS) or {}) do
+for _, component_def in Lua.ipairs(_split(ENV_PROSODY_COMPONENTS) or {}) do
 	local c_name, c_type = _split(component_def, ":");
 	Component (c_name) (c_type)
 
@@ -278,7 +278,7 @@ for _, component_def in ipairs(_split(ENV_PROSODY_COMPONENTS) or {}) do
 	end
 end
 
-for _, component_def in ipairs(_split(ENV_PROSODY_EXTERNAL_COMPONENTS) or {}) do
+for _, component_def in Lua.ipairs(_split(ENV_PROSODY_EXTERNAL_COMPONENTS) or {}) do
 	local c_name, c_secret = _split(component_def, ":");
 	Component (c_name)
 		component_secret = c_secret or ENV_PROSODY_COMPONENT_SECRET
