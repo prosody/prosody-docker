@@ -4,6 +4,7 @@ MAINTAINER Prosody Developers <developers@prosody.im>
 
 ARG PROSODY_PACKAGE=prosody-0.12
 ARG LUA_PACKAGE=lua5.4
+ARG BUILD_ID=
 
 # Install dependencies
 RUN apt-get update \
