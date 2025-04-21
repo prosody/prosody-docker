@@ -12,6 +12,7 @@
 -- The only thing left to do is rename this file to remove the .dist ending, and fill in the
 -- blanks. Good luck, and happy Jabbering!
 
+local _unpack = Lua.table.unpack;
 local function _split(s, sep)
 	if not s then return nil; end
 	sep = sep or ",";
@@ -259,7 +260,7 @@ end
 -- For more information on components, see https://prosody.im/doc/components
 
 for _, component_def in Lua.ipairs(_split(ENV_PROSODY_COMPONENTS) or {}) do
-	local c_name, c_type = _split(component_def, ":");
+	local c_name, c_type = _unpack(_split(component_def, ":"));
 	Component (c_name) (c_type)
 
 	if c_type == "muc" then
@@ -279,7 +280,7 @@ for _, component_def in Lua.ipairs(_split(ENV_PROSODY_COMPONENTS) or {}) do
 end
 
 for _, component_def in Lua.ipairs(_split(ENV_PROSODY_EXTERNAL_COMPONENTS) or {}) do
-	local c_name, c_secret = _split(component_def, ":");
+	local c_name, c_secret = _unpack(_split(component_def, ":"));
 	Component (c_name)
 		component_secret = c_secret or ENV_PROSODY_COMPONENT_SECRET
 end
