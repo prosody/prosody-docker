@@ -2,15 +2,10 @@
 
 This is the Prosody Docker image building repository. It is used by our build server to build and publish Docker images for stable releases and nightly builds.
 
-There are many alternative Dockerfiles for Prosody available if this one
-does not suit your needs:
-
-  - [OpusVL/prosody-docker](https://github.com/OpusVL/prosody-docker/)
-  - [unclev/prosody-docker-extended](https://github.com/unclev/prosody-docker-extended)
-
 ## Published images
 
-For images please see here: [Prosody on Docker](https://hub.docker.com/r/prosody/prosody/).
+- **[Docker Hub image prosodyim/prosody](https://hub.docker.com/r/prosodyim/prosody): official images, up-to-date, automated builds.**
+- ~~[Docker Hub image prosody/prosody](https://hub.docker.com/r/prosody/prosody)~~: official images, outdated, manual builds.
 
 ## Running
 
@@ -110,3 +105,11 @@ docker run -it \
 ```bash
 docker build --build-arg PROSODY_PACKAGE=prosody-0.12 -t prosody/prosody:0.12 .
 ```
+
+## Alternative Dockerfiles
+
+There are many alternative Dockerfiles for Prosody available if this one
+does not suit your needs:
+
+  - [OpusVL/prosody-docker](https://github.com/OpusVL/prosody-docker/)
+  - [unclev/prosody-docker-extended](https://github.com/unclev/prosody-docker-extended)
