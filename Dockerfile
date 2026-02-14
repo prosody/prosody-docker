@@ -6,13 +6,12 @@ ARG PROSODY_PACKAGE=prosody-0.12
 ARG LUA_PACKAGE=lua5.4
 ARG BUILD_ID=
 
+ADD https://prosody.im/downloads/repos/bookworm/prosody.sources /etc/apt/sources.list.d/prosody.sources
+
 # Install dependencies
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-        extrepo tini \
-    && extrepo enable prosody \
-    && apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        tini \
         ${PROSODY_PACKAGE} \
         ${LUA_PACKAGE} \
         lua-unbound \
