@@ -11,7 +11,7 @@ This is the Prosody Docker image building repository. It is used by our build se
 
 It works by enabling the [prosody package repository](https://prosody.im/download/package_repository) and installing the selected Prosody package from there based on the `PROSODY_PACKAGE` build argument.
 
-Docker images are built off an __Debian 12 (bookworm)__ base.
+Docker images are built off an __Debian 13 (bookworm)__ base.
 
 ```bash
 docker run -d --name prosody -p 5222:5222 prosody/prosody
