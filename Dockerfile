@@ -22,6 +22,7 @@ RUN apt-get update \
         lua-dbi-mysql \
         luarocks \
         lib${LUA_PACKAGE}-dev \
+        libjs-bootstrap4 libjs-jquery \
     && update-alternatives --set lua-interpreter /usr/bin/${LUA_PACKAGE} \
     && rm -rf /var/lib/apt/lists/*
 
