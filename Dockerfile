@@ -2,7 +2,7 @@ FROM debian:trixie-slim
 
 MAINTAINER Prosody Developers <developers@prosody.im>
 
-ARG PROSODY_PACKAGE=prosody-0.12
+ARG PROSODY_PACKAGE=prosody-13.0
 ARG LUA_PACKAGE=lua5.4
 ARG BUILD_ID=
 
