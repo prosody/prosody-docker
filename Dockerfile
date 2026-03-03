@@ -14,6 +14,7 @@ RUN apt-get update \
         tini \
         ${PROSODY_PACKAGE} \
         ${LUA_PACKAGE} \
+        ca-certificates \
         lua-unbound \
         lua-sec \
         lua-readline \
