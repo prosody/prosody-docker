@@ -128,6 +128,7 @@ use_dane = ENV_PROSODY_USE_DANE
 unbound = {
 	-- on Debian this file is included in the package 'dns-root-data'
 	trustfile = ENV_PROSODY_USE_DANE and "/usr/share/dns/root.ds";
+	forward = _split(ENV_PROSODY_DNS_RESOLVERS);
 }
 
 -- Some servers have invalid or self-signed certificates. You can list
