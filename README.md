@@ -60,6 +60,7 @@ Volumes can be mounted at the following locations for adding in files:
 * `PROSODY_TURN_SECRET` - Shared secret for TURN
 * `PROSODY_TURN_TLS_PORT` -  Port number for STUN over TLS
 * `PROSODY_RETENTION_DAYS` - How many days worth of message archives and shared file to keep.
+* `PROSODY_USE_DANE` - Whether to enable [DANE](https://prosody.im/doc/dane) (requires [DNSSEC](https://prosody.im/doc/dnssec) aware resolvers).
 * `PROSODY_S2S_SECURE_AUTH` - Whether to require that remote servers present valid certificates. Enabled by default.
 * `PROSODY_C2S_RATE_LIMIT` - Rate limit for client-to-server connections. Defaults to `10kb/s`.
 * `PROSODY_S2S_RATE_LIMIT` - Rate limit for server-to-server connections. Defaults to `30kb/s`.

@@ -15,6 +15,7 @@ RUN apt-get update \
         ${PROSODY_PACKAGE} \
         ${LUA_PACKAGE} \
         ca-certificates \
+        dns-root-data \
         lua-unbound \
         lua-sec \
         lua-readline \

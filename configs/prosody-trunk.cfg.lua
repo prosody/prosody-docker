@@ -124,6 +124,12 @@ modules_disabled = _split(ENV_PROSODY_DISABLE_MODULES)
 
 s2s_secure_auth = ENV_PROSODY_S2S_SECURE_AUTH ~= "0"
 
+use_dane = ENV_PROSODY_USE_DANE
+unbound = {
+	-- on Debian this file is included in the package 'dns-root-data'
+	trustfile = ENV_PROSODY_USE_DANE and "/usr/share/dns/root.ds";
+}
+
 -- Some servers have invalid or self-signed certificates. You can list
 -- remote domains here that will not be required to authenticate using
 -- certificates. They will be authenticated using other methods instead,
