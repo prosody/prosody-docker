@@ -124,7 +124,7 @@ modules_disabled = _split(ENV_PROSODY_DISABLE_MODULES)
 
 s2s_secure_auth = ENV_PROSODY_S2S_SECURE_AUTH ~= "0"
 
-use_dane = ENV_PROSODY_USE_DANE
+use_dane = ENV_PROSODY_USE_DANE and true or false
 unbound = {
 	-- on Debian this file is included in the package 'dns-root-data'
 	trustfile = ENV_PROSODY_USE_DANE and "/usr/share/dns/root.ds";

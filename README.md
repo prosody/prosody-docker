@@ -47,6 +47,8 @@ Volumes can be mounted at the following locations for adding in files:
   * SSL certificates
 * __/etc/prosody/modules__:
   * Location for including additional modules
+* __/var/lib/prosody__:
+  * Location of data
 
 ### Environment Variables
 
