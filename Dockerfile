@@ -1,6 +1,6 @@
 FROM debian:trixie-slim
 
-MAINTAINER Prosody Developers <developers@prosody.im>
+LABEL org.opencontainers.image.authors="Prosody Developers <developers@prosody.im>"
 
 ARG PROSODY_PACKAGE=prosody-13.0
 ARG LUA_PACKAGE=lua5.4
