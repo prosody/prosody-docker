@@ -22,6 +22,7 @@ RUN apt-get update \
         lua-dbi-sqlite3 \
         lua-dbi-postgresql \
         lua-dbi-mysql \
+        lua-ldap \
         luarocks \
         lib${LUA_PACKAGE}-dev \
         libjs-bootstrap4 libjs-jquery \
