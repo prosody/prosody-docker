@@ -38,5 +38,5 @@ ENTRYPOINT ["/usr/bin/tini", "--", "/entrypoint.sh"]
 COPY ./configs/${PROSODY_PACKAGE}.cfg.lua /etc/prosody/prosody.cfg.lua
 
 EXPOSE 80 443 5222 5269 5347 5280 5281
-ENV __FLUSH_LOG yes
+ENV __FLUSH_LOG=yes
 CMD ["prosody", "-F"]
