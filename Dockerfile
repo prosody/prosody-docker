@@ -31,8 +31,7 @@ RUN apt-get update \
 RUN mkdir -p /etc/prosody/conf.d /var/run/prosody \
  && chown prosody:prosody /etc/prosody/conf.d /var/run/prosody
 
-COPY ./entrypoint.sh /entrypoint.sh
-RUN chmod 755 /entrypoint.sh
+COPY --chmod=755 ./entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/usr/bin/tini", "--", "/entrypoint.sh"]
 
 COPY ./configs/${PROSODY_PACKAGE}.cfg.lua /etc/prosody/prosody.cfg.lua
