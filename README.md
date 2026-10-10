@@ -89,6 +89,80 @@ Volumes can be mounted at the following locations for adding in files:
 * `PROSODY_EXTRA_CONFIG` - Path to additional configuration file. Can contain wildcards. Defaults to `/etc/prosody/conf.d/*.cfg.lua`.
 
 
+### Using LDAP authentication
+
+The image comes with full suppport for authentication using LDAP servers,
+but properly configuring it may require dealing with some gotchas.
+
+Note that setting up LDAP authentication heavily depends on
+certain infrastructural decisions&nbsp;&mdash; in particular,
+whether Prosody will use LDAP-binds to authenticate against
+LDAP server or direct comparison of clear-text passwords.
+This decision may also affect requirements to use TLS for c2s
+communications. These considerations are outside the scope
+of this documentation.
+
+LDAP authentication in Prosody is implemeted by the module
+[`mod_auth_ldap`](https://prosody.im/doc/modules/mod_auth_ldap)
+which is enabled by default,
+so you do not need to add it to `PROSODY_ENABLE_MODULES`.
+
+To switch the authentication from the default built-in mechanism to LDAP,
+you have to use a configuration file.
+In order to do that, you need to bind-mount a directory from the host to the
+`/etc/prosody` directory inside the container&nbsp;&mdash;
+like in
+
+```bash
+docker run -v /data/prosody/configuration:/etc/prosody ...
+```
+
+Then create a file in that directory with a name which must end in `.cfg.lua`;
+something like `auth.cfg.lua` would be a good choice.
+
+If you intend to use the `getpasswd` authentication mode,
+the file will contain the password Prosody will use to authenticate
+against LDAP server, so you should tighten the permissions on it accordigly.
+
+Then, add to the file a set of directives;
+the main one switches the authentication backend to LDAP,
+and the rest configure the way LDAP authentication is done.
+
+An example configuration which uses the `getpasswd` mode:
+
+```lua
+authentication = "ldap"
+
+-- See https://prosody.im/doc/modules/mod_auth_ldap
+ldap_server   = "ldap.example.com:389"
+ldap_tls      = false
+ldap_mode     = "getpasswd"
+ldap_rootdn   = "cn=prosody,dc=example,dc=com"
+ldap_password = "****"
+ldap_base     = "ou=Users,dc=example,dc=com"
+ldap_filter   = "(jid=$user@$host)"
+```
+
+A caveat on accessing LDAP server running on the same host
+as the Prosody container: since Docker "namespaces" IP networking
+for the programs which run in its containers, the 127/8 local network
+is local to the container and is isolated from the host.
+If you intend to run Prosody container on the same hosts which runs
+the LDAP server you want to authenticate against,
+setting `ldap_server` to something like "127.0.0.1:389" will not work.
+To refer to the host's local network inside a container,
+use the special "host name" `host.containers.internal`, so a sensible
+setting for such case will look something like
+
+```lua
+ldap_server   = "host.containers.internal:389"
+```
+
+After setting up the file, you should restart the container and check
+whether LDAP authentication works.
+If something is not quite right, it's advised to (temporarily) raise
+log level to `debug` via the `PROSODY_LOGLEVEL` variable and retry.
+
 ### Example
 
 ```bash
