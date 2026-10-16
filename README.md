@@ -151,12 +151,16 @@ If you intend to run Prosody container on the same host which runs
 the LDAP server you want to authenticate against,
 setting `ldap_server` to something like "127.0.0.1:389" will not work.
 To refer to the host's local network inside a container,
-use the special "host name" `host.containers.internal`, so a sensible
+use the special "host name" `host.docker.internal`, so a sensible
 setting for such a case will look something like
 
 ```lua
 ldap_server   = "host.containers.internal:389"
 ```
+
+Note that Podman uses a different hostname for this&nbsp;&mdash; `host.containers.internal`,
+and the situation in Kubernetes is more complicated and the actual setup
+to make depends on a number of factors, so cannot be sensibly discussed here.
 
 After setting up the file, you should restart the container and check
 whether LDAP authentication works.
