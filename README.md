@@ -91,7 +91,7 @@ Volumes can be mounted at the following locations for adding in files:
 
 ### Using LDAP authentication
 
-The image comes with full suppport for authentication using LDAP servers,
+The image comes with full support for authentication using LDAP servers,
 but properly configuring it may require dealing with some gotchas.
 
 Note that setting up LDAP authentication heavily depends on
@@ -102,7 +102,7 @@ This decision may also affect requirements to use TLS for c2s
 communications. These considerations are outside the scope
 of this documentation.
 
-LDAP authentication in Prosody is implemeted by the module
+LDAP authentication in Prosody is implemented by the module
 [`mod_auth_ldap`](https://prosody.im/doc/modules/mod_auth_ldap)
 which is enabled by default,
 so you do not need to add it to `PROSODY_ENABLE_MODULES`.
@@ -122,7 +122,7 @@ something like `auth.cfg.lua` would be a good choice.
 
 If you intend to use the `getpasswd` authentication mode,
 the file will contain the password Prosody will use to authenticate
-against LDAP server, so you should tighten the permissions on it accordigly.
+against LDAP server, so you should tighten the permissions on it accordingly.
 
 Then, add to the file a set of directives;
 the main one switches the authentication backend to LDAP,
@@ -147,12 +147,12 @@ A caveat on accessing LDAP server running on the same host
 as the Prosody container: since Docker "namespaces" IP networking
 for the programs which run in its containers, the 127/8 local network
 is local to the container and is isolated from the host.
-If you intend to run Prosody container on the same hosts which runs
+If you intend to run Prosody container on the same host which runs
 the LDAP server you want to authenticate against,
 setting `ldap_server` to something like "127.0.0.1:389" will not work.
 To refer to the host's local network inside a container,
 use the special "host name" `host.containers.internal`, so a sensible
-setting for such case will look something like
+setting for such a case will look something like
 
 ```lua
 ldap_server   = "host.containers.internal:389"
