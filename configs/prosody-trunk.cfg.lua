@@ -273,12 +273,12 @@ for _, component_def in Lua.ipairs(_split(ENV_PROSODY_COMPONENTS) or {}) do
 	if c_type == "muc" then
 		modules_enabled = _split(ENV_PROSODY_MUC_MODULES)
 	elseif c_type == "http_file_share" then
-		http_file_share_expire_after = 60 * 60 * 24 * tonumber(ENV_PROSODY_UPLOAD_EXPIRY_DAYS or ENV_PROSODY_RETENTION_DAYS or "7")
+		http_file_share_expire_after = 60 * 60 * 24 * Lua.tonumber(ENV_PROSODY_UPLOAD_EXPIRY_DAYS or ENV_PROSODY_RETENTION_DAYS or "7")
 		if ENV_PROSODY_UPLOAD_LIMIT_MB then
-			http_file_share_size_limit = (1024 * 1024 * tonumber(ENV_PROSODY_UPLOAD_LIMIT_MB)) + 16
+			http_file_share_size_limit = (1024 * 1024 * Lua.tonumber(ENV_PROSODY_UPLOAD_LIMIT_MB)) + 16
 		end
 		if ENV_PROSODY_UPLOAD_STORAGE_GB then
-			http_file_share_global_quota = 1024 * 1024 * 1024 * tonumber(ENV_PROSODY_UPLOAD_STORAGE_GB)
+			http_file_share_global_quota = 1024 * 1024 * 1024 * Lua.tonumber(ENV_PROSODY_UPLOAD_STORAGE_GB)
 		end
 		http_paths = {
 			file_share = "/share";
