@@ -1,6 +1,9 @@
 FROM debian:trixie-slim
 
 LABEL org.opencontainers.image.authors="Prosody Developers <developers@prosody.im>"
+LABEL org.opencontainers.image.source="https://hg.prosody.im/docker/"
+LABEL org.opencontainers.image.vendor="Prosody IM"
+LABEL org.opencontainers.image.licenses="MIT"
 
 ARG PROSODY_PACKAGE=prosody-13.0
 ARG LUA_PACKAGE=lua5.4
