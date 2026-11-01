@@ -64,6 +64,8 @@ modules_enabled = {
 		"vcard_legacy"; -- Conversion between legacy vCard and PEP Avatar, vcard
 
 	-- Nice to have
+		"account_activity"; -- Record time when an account was last used
+		"cloud_notify"; -- Push notifications for mobile devices
 		"csi_simple"; -- Simple but effective traffic optimizations for mobile devices
 		"invites"; -- Create and manage invites
 		"invites_adhoc"; -- Allow admins/users to create invitations via their client
@@ -88,7 +90,6 @@ modules_enabled = {
 	-- Other specific functionality
 		--"announce"; -- Send announcement to all online users
 		--"groups"; -- Shared roster support
-		--"legacyauth"; -- Legacy authentication. Only used by some old clients and bots.
 		--"mimicking"; -- Prevent address spoofing
 		--"motd"; -- Send a message to users when they log in
 		--"proxy65"; -- Enables a file transfer proxy service which clients behind NAT can use
